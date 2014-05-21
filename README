@@ -1,0 +1,5 @@
+Some Go code and tools for using WARC files.
+
+Currently very use-case specific - I just want to read stored HTTP requests
+and responses.
+
