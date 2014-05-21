@@ -28,16 +28,16 @@ type WARCReader struct {
 	rdr *textproto.Reader
 }
 
-func NewWARCReader(in io.Reader) *WARCReader {
+func NewReader(in io.Reader) *WARCReader {
 	bufin := bufio.NewReader(in)
 	rdr := textproto.NewReader(bufin)
 	r := &WARCReader{rdr: rdr}
 	return r
 }
 
-// Reads the next WARC record.
+// ReadRecord reads the next WARC record in the file.
 // nil,io.EOF is returned if no more records are available.
-func (r *WARCReader) Read() (*WARCRecord, error) {
+func (r *WARCReader) ReadRecord() (*WARCRecord, error) {
 	rdr := r.rdr
 
 	// read the version
