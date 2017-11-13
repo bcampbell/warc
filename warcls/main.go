@@ -5,7 +5,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/bcampbell/warc/warc"
+	"github.com/bcampbell/warc"
 	"io"
 	"os"
 )
@@ -36,7 +36,7 @@ func doFile(filename string) error {
 		return err
 	}
 	defer in.Close()
-	r := warc.NewWARCReader(in)
+	r := warc.NewReader(in)
 	for {
 		rec, err := r.Read()
 		if err != nil {
