@@ -38,7 +38,7 @@ func doFile(filename string) error {
 	defer in.Close()
 	r := warc.NewReader(in)
 	for {
-		rec, err := r.Read()
+		rec, err := r.ReadRecord()
 		if err != nil {
 			if err == io.EOF {
 				return nil
