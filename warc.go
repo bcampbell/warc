@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/textproto"
 	"strconv"
+	"strings"
 )
 
 type WARCRecord struct {
@@ -18,6 +19,20 @@ type WARCRecord struct {
 
 	// the payload data
 	Block []byte
+}
+
+// helper to read the "Warc-Target-Uri", stripping out any surrounding
+// angle-brackets.
+// The warc spec requires the uri to be contained within angle-brackets
+// (ie "<http://example.com>"), but a lot of tooling and examples don't
+// do this.
+func (rec *WARCRecord) TargetURI() string {
+	u := rec.Header.Get("Warc-Target-Uri")
+	if strings.HasPrefix(u, "<") && strings.HasSuffix(u, ">") {
+		u = strings.TrimPrefix(u, "<")
+		u = strings.TrimSuffix(u, ">")
+	}
+	return u
 }
 
 // TODO:
