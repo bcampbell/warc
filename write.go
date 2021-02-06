@@ -34,7 +34,7 @@ func copyResponse(orig *http.Response) (*http.Response, error) {
 	return &clone, nil
 }
 
-// WriteWARC writes out an http response (including it's body).
+// Write writes out an http response (including it's body).
 // It tries to leave the response unaltered, although it works by
 // reading in the entire Body, replacing it with a []byte-backed
 // reader reset back to the beginning. This should be fine for most
